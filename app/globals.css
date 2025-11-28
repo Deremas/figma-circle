@@ -1,0 +1,109 @@
+/* stylelint-disable at-rule-no-unknown */
+/* Liveblocks styles (UI) */
+@import url("@liveblocks/react-ui/styles.css");
+
+/* Prefer the Work Sans variable font from Google for consistent rendering */
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base layer: sensible resets and accessible defaults */
+@layer base {
+  /* Box-sizing and geometric resets */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #__next {
+    height: 100%;
+  }
+
+  body {
+    /* Light / Dark defaults using explicit CSS to avoid @apply issues with Turbopack */
+    background-color: #ffffff;
+    color: #000000;
+    font-family: "Work Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* Media and interactive element defaults */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    /* keep links visible; adjust if you have a design token for primary green */
+    color: #059669; /* approx. Tailwind 'primary-green' */
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+
+  /* Preserve focus styling for keyboard users (use focus-visible where possible) */
+  :focus {
+    outline: none;
+  }
+}
+
+/* Utilities converted to plain CSS to avoid using Tailwind's @apply (Turbopack compatibility) */
+.no-ring {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.input-ring {
+  height: 2rem; /* h-8 */
+  border-radius: 0; /* rounded-none */
+  border: none; /* border-none */
+  background: transparent; /* bg-transparent */
+  outline: none;
+}
+.input-ring:focus,
+.input-ring:focus-visible {
+  /* approximate focus ring for primary green */
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+}
+
+.right-menu-content {
+  display: flex;
+  width: 20rem; /* w-80 */
+  flex-direction: column;
+  gap: 0.25rem; /* gap-y-1 */
+  border: none;
+  background: #000000; /* primary-black fallback */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #ffffff;
+}
+
+.right-menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0.75rem; /* px-3 */
+  padding-right: 0.75rem;
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem;
+}
+.right-menu-item:hover {
+  background: #e5e7eb; /* primary-grey-200 approximation */
+}
+
+/* Dark mode adjustments using .dark on html (Tailwind convention) */
+.dark body {
+  background-color: #0b0b0b; /* fallback dark background */
+  color: #ffffff;
+}
